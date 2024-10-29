@@ -5,29 +5,29 @@ let btn = document.getElementById("add"); // Declaring a varible of button with 
 let items = getItems();
 
 function getItems() {
-    let value = localStorage.getItem("todo-list") || " [] "; // creating my local storage with empty list
+    let value = localStorage.getItem("todo-list") || " [] "; // creating my local storage for "todo-list" with an empty list
 
     return JSON.parse(value); // Using json parse method to convert the object to an array
  
 };
 
-function setItems(items) { // I need to set the items
+function setItems(items) { // set items
     let itemsJson = JSON.stringify(items); // Using JSON to convert the array into string
 
     localStorage.setItem("todo-list", itemsJson); // to store my array in the local storage, am passing in the todo-list and itemsjson
 };
 
 function addItem() { // Adding new item
-    items.unshift({ // With the unshift method, i can add one or more items to the beginning of my array
-        description: "", // the description is an empty string
-        completed: false // it change once the item has been completed
+    items.unshift({ // With the unshift method, user can add one or more items to the beginning of my array
+        description: "", // the description is an empty string where the user put whatever item they want
+        completed: false // it change to "true" once the item has been checked
     });
 
     setItems(items)
-    refreshList(); // it refresh anytime someone add a new item
+    refreshList(); // it refresh anytime a user add a new item
 };
 
-function updateItem(item, key, value) { //To save my items, i need the items, the key i want to update and the value i want to set the key too.
+function updateItem(item, key, value) { //To save my items; user need the items, the key am updating and the value the user wants to set the key too.
     item[key] = value;
 
     setItems(items);
