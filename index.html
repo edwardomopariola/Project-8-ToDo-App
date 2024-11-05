@@ -16,16 +16,20 @@
     -Save each todo item as an object, with a key for the todo text and an "id" key that represents a random number you can use to search it by. So, you should have an array of objects that you're saving in localStorage.
     -Hint: use JavaScript localStorage to store the todos. 
     -Hint: To convert an array into the string representation, you'll need JSON stringify. To convert it back to an array, you'll need JSON parse. -->
-   <div class="container">
-      <h1>ToDo-List &#128221;</h1>
-      <div id="items"></div>
-      <template id="itemTemplate">
-        <div class="item">
-          <input type="checkbox"  class="item-completed">
-          <input type="text" class="item-description" placeholder="To-Do List">
+    
+    <div class="container">
+      <div class="ToDo-list">
+        <h2>ToDo-List &#128221;</h2>
+        <div class="row-2">
+          <input type="text" id="input-box" placeholder="Add your list">
+          <button onclick="addTask()">Add</button>
         </div>
-      </template>
-      <button id="add">Add Item</button>
+        <ul id="list-container">
+          <!-- <li class="checked">Task 1</li>
+          <li>Task 1</li>
+          <li>Task 1</li> -->
+        </ul>
+      </div>
    </div>
         
     <script src="script.js"></script>
