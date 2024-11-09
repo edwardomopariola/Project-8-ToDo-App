@@ -1,6 +1,9 @@
 let inputBox = document.getElementById("input-box"); // Declaring a varible of "input-box"
 let listContainer = document.getElementById("list-container"); // Declaring a varible of "list-container"
 
+let myObj = '{"name":"Eddy", "age":25, "car":"Nissan"}';
+let myJSON = JSON.parse(myObj);
+let myJson = JSON.stringify(myObj);
 function addTask() {
     if(inputBox.value === ''){ //Creeating a inputbox with an empty string for user to write their todo list
         alert("make a list");
@@ -18,7 +21,7 @@ function addTask() {
 };
 
 listContainer.addEventListener("click", function(e) { 
-    if(e.target.tagName === "LI") { //when a user click on li, it will check the class list
+    if(e.target.tagName === "LI") { // when a user click on li, it will check the class list
         e.target.classList.toggle("checked"); 
         saveData()
     }
@@ -30,8 +33,7 @@ listContainer.addEventListener("click", function(e) {
 
 
 function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML)
-
+    localStorage.setItem("data", myObj, listContainer.innerHTML)
 };
 
 function showList() {
