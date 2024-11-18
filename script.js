@@ -1,4 +1,4 @@
-let array = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []
+let array = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : [] //varible of array with an empty aray
 console.log(array)
 
 addTask.addEventListener("click", () => {   //Click event
