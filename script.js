@@ -15,11 +15,10 @@ function list() {
     let myArray = ""
     for(let i = 0 ; i < myObj.length; i++) {
         myArray += `<ul id="list-container">
-                        // ${myObj[i]}
                         <!-- <li class="checked">Task 1</li>
                         <li>Task 1</li>
                         <li>Task 1</li> -->
-                  </ul>`
+                    </ul>`
     }
 }
 document.getElementById("list-container").innerHTML = myArray
