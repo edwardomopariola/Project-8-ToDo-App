@@ -1,41 +1,71 @@
 let inputBox = document.getElementById("input-box"); // Declaring a varible of "input-box"
 let listContainer = document.getElementById("list-container"); // Declaring a varible of "list-container"
 
-let myArray = []; //declaring a varible empty array
+let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []; //declaring a varible empty array
+
 console.log(myArray)
 
-let myObj = '{"name":"Eddy," "age""25, "car":"Nissan"}';
-myArray.push(myObj.value)
-
 function saveData() {
-localStorage.setItem("items", JSON.stringify(myArray))
+    localStorage.setItem("items", JSON.stringify(myArray))
 }
 
-function list() {
-    let myArray = ""
-    for(let i = 0 ; i < myObj.length; i++) {
-        myArray += `<ul id="list-container">
-                        <!-- <li class="checked">Task 1</li>
-                        <li>Task 1</li>
-                        <li>Task 1</li> -->
-                    </ul>`
+
+// if (localStorage.length > 0) {
+//     console.log("localstorage is safe")
+// } else {
+//     console.log("nothing is safe")
+// }
+
+
+// let todoObj = [
+//     // { id: 1732213341681, text: inputBox.value }
+// ]
+
+function showList() {
+
+    for(let i = 0 ; i < myArray.length; i++) {
+
+        let todoObj = myArray[i];
+
+        // todo.forEach(todos => {
+        //     let li = document.createElement("li");
+        //     li.innerHTML = todoObj.text;
+        //     li.id = todoObj.text
+        //     listContainer.appendChild(li);
+        //     let span = document.createElement("span") //creating a span element
+        //     span.innerHTML = "\u00d7" //
+        //     li.appendChild(span);
+        // });
+
+        let li = document.createElement("li");
+        li.innerHTML = todoObj.text;
+        li.id = todoObj.text
+        listContainer.appendChild(li);
+        let span = document.createElement("span") //creating a span element
+        span.innerHTML = "\u00d7" //
+        li.appendChild(span);
     }
 }
-document.getElementById("list-container").innerHTML = myArray
+showList();
 
 function addTask() {
     if(inputBox.value === ''){ //Creeating a inputbox with an empty string for user to write their todo list
         alert("make a list");
     }
     else{
+
+        let todoObj = {text: inputBox.value, id: Date.now()};
+
         let li = document.createElement("li");
-        li.innerHTML = inputBox.value
+        li.innerHTML = todoObj.text;
+        li.id = todoObj.id
         listContainer.appendChild(li);
         let span = document.createElement("span") //creating a span element
         span.innerHTML = "\u00d7" //
         li.appendChild(span);
     }
     inputBox.value = "";
+    myArray.push(todoObj)
     saveData()
 };
 
@@ -50,11 +80,3 @@ listContainer.addEventListener("click", function(e) {
     }
 }, false);
 
-function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML)
-}
-
-function showList() {
-    listContainer.innerHTML = localStorage.getItem("data");
-};
-showList();
