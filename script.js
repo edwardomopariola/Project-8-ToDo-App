@@ -9,42 +9,33 @@ function saveData() {
     localStorage.setItem("items", JSON.stringify(myArray))
 }
 
-
-// if (localStorage.length > 0) {
-//     console.log("localstorage is safe")
-// } else {
-//     console.log("nothing is safe")
-// }
-
-
-// let todoObj = [
-//     // { id: 1732213341681, text: inputBox.value }
-// ]
-
 function showList() {
 
     for(let i = 0 ; i < myArray.length; i++) {
-
         let todoObj = myArray[i];
+        
+        todoObj.forEach(obj => {
+            let li = document.createElement("li");
+            li.innerHTML = todoObj.text;
+            li.id = todoObj.text
+            listContainer.appendChild(li);
+            let span = document.createElement("span") //creating a span element
+            span.innerHTML = "\u00d7" //
+            li.appendChild(span);
+        });
+        inputBox.value = "";
+        myArray.push(todoObj)
+        saveData()
+    
 
-        // todo.forEach(todos => {
-        //     let li = document.createElement("li");
-        //     li.innerHTML = todoObj.text;
-        //     li.id = todoObj.text
-        //     listContainer.appendChild(li);
-        //     let span = document.createElement("span") //creating a span element
-        //     span.innerHTML = "\u00d7" //
-        //     li.appendChild(span);
-        // });
-
-        let li = document.createElement("li");
-        li.innerHTML = todoObj.text;
-        li.id = todoObj.text
-        listContainer.appendChild(li);
-        let span = document.createElement("span") //creating a span element
-        span.innerHTML = "\u00d7" //
-        li.appendChild(span);
-    }
+        // let li = document.createElement("li");
+        // li.innerHTML = todoObj.text;
+        // li.id = todoObj.text
+        // listContainer.appendChild(li);
+        // let span = document.createElement("span") //creating a span element
+        // span.innerHTML = "\u00d7" //
+        // li.appendChild(span);
+   }
 }
 showList();
 
@@ -74,9 +65,9 @@ listContainer.addEventListener("click", function(e) {
         e.target.classList.toggle("checked"); 
         saveData()
     }
+
     else if (e.target.tagName === "SPAN") { //when a user click on span, it will delete the parent element
         e.target.parentElement.remove()
         saveData()
-    }
+    };
 }, false);
-
