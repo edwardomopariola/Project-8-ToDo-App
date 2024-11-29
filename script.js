@@ -1,16 +1,16 @@
 let inputBox = document.getElementById("input-box"); // Declaring a varible of "input-box"
 let listContainer = document.getElementById("list-container"); //Declaring a varible of "list-container"
 
-let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []; //declaring a varible empty array
+let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []; // using the ternary operator, am declaring an empty array 
 
-function saveData() {
+function saveData() {  //local storage save data function
     localStorage.setItem("items", JSON.stringify(myArray))
 };
 
 
-function showList() {
+function showList() {  //show list function
 
-    for(let i = 0 ; i < myArray.length; i++) {
+    for(let i = 0 ; i < myArray.length; i++) {  //using for loop to loop thru my array
         
         let todoObj = myArray[i];
         let li = document.createElement("li");
@@ -22,16 +22,15 @@ function showList() {
         li.appendChild(span);
     };
 };
-
 showList();
 
-function addTask() {
+function addTask() {  //add task function
     if(inputBox.value === ''){ //Creeating a inputbox with an empty string for user to write their todo list
         alert("make a list");
     }
     else{
 
-        let todoObj = {text: inputBox.value, id: Date.now() };
+        let todoObj = {text: inputBox.value, id: Date.now()};  //getting my key name ID AND TEXT
 
         let li = document.createElement("li");
         li.innerHTML = todoObj.text;
@@ -44,18 +43,16 @@ function addTask() {
         inputBox.value = "";
         myArray.push(todoObj)
         saveData()
-    }
+    };
 };
 
-listContainer.addEventListener("click", function(e) { 
+listContainer.addEventListener("click", function(e) {  
     if (e.target.tagName === "SPAN") {
-        const todo = e.target.parentElement
-        const todoId = todo.id
-        // remove from DOM
-       todo.remove()
-        //    remove from myarray variable that hold local storage
-        myArray = myArray.filter((todo) => todo.id != todoId);
-        // save updated array to localstorage
-    saveData()
-    }
+        let todo = e.target.parentElement
+        let todoId = todo.id
+        todo.remove()   // remove from DOM
+        myArray = myArray.filter((obj) => obj.id !== Number(todoId));   //    remove from myarray variable that hold local storage
+        
+        saveData()    // save updated array to localstorage
+    };
 });
