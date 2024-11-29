@@ -3,11 +3,8 @@ let listContainer = document.getElementById("list-container"); //Declaring a var
 
 let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []; //declaring a varible empty array
 
-// console.log(myArray)
-
 function saveData() {
     localStorage.setItem("items", JSON.stringify(myArray))
-    let myArray = myArray.filter((obj) => obj.id != todoObj);
 };
 
 
@@ -51,18 +48,14 @@ function addTask() {
 };
 
 listContainer.addEventListener("click", function(e) { 
-    // if(e.target.tagName === "LI") { //when a user click on li, it will check the class list
-    //     e.target.classList.toggle("checked"); 
-    //     saveData()
-    // }
-    console.log(e.target.getAttribute('data-value'))
-
-
-    if (e.target.tagName === "SPAN") { //when a user click on span, it will delete the parent element
-        // console.log(e.target.getAttribute('data-value'))
-        // e.target.parentElement.remove()
-        // let localStorageData = localStorage.getItem("items")
-        // console.log(localStorageData)
-        // saveData()
-    };
+    if (e.target.tagName === "SPAN") {
+        const todo = e.target.parentElement
+        const todoId = todo.id
+        // remove from DOM
+       todo.remove()
+        //    remove from myarray variable that hold local storage
+        myArray = myArray.filter((todo) => todo.id != todoId);
+        // save updated array to localstorage
+    saveData()
+    }
 });
