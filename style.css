@@ -73,7 +73,7 @@ ul li.checked {
     text-decoration: line-through;
 }
 ul li.checked::before {
-    background-color: orange;
+    
 }
 ul li span {
     position: absolute;
