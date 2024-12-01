@@ -7,10 +7,27 @@ function saveData() {  //local storage save data function
     localStorage.setItem("items", JSON.stringify(myArray))
 };
 
+// function myFunction() {
 
-function showList() {  //show list function
+//         for(let i = 0 ; i < myArray.length; i++) {  //using for loop to loop thru my array
+            
+//             let todoObj = myArray[i];
+//             let li = document.createElement("li");
+//             li.innerHTML = todoObj.text;
+//             li.id = todoObj.id
+//             listContainer.appendChild(li);
+//             let span = document.createElement("span") //creating a span element
+//             span.innerHTML = "\u00d7" //
+//             li.appendChild(span);
+//         };
+//     };
+//     showList();
+// };
+// window.onload = myFunction
 
-    for(let i = 0 ; i < myArray.length; i++) {  //using for loop to loop thru my array
+window.onload = function () {  //show list function
+
+   for(let i = 0 ; i < myArray.length; i++) {  //using for loop to loop thru my array
         
         let todoObj = myArray[i];
         let li = document.createElement("li");
@@ -22,7 +39,8 @@ function showList() {  //show list function
         li.appendChild(span);
     };
 };
-showList();
+// showList();
+// console.log("page loaded")
 
 function addTask() {  //add task function
     if(inputBox.value === ''){ //Creeating a inputbox with an empty string for user to write their todo list

@@ -68,13 +68,6 @@ ul li::before {
     background-position: center;
     top: 12px;
 }
-ul li.checked {
-    color: #555;
-    text-decoration: line-through;
-}
-ul li.checked::before {
-    
-}
 ul li span {
     position: absolute;
     right: 0;
