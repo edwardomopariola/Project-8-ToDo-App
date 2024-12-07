@@ -6,8 +6,42 @@ let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("i
 
 function saveData() {  //local storage save data function
     localStorage.setItem("items", JSON.stringify(myArray))
+    localStorage.setItem('todos', JSON.stringify(firstFiveTodos));
+
 };
 
+function loadTodos() {  //API Function
+    // Get todos from localStorage
+    let todos = JSON.parse(localStorage.getItem('todos'));
+  
+    // Check if todos are already in localStorage
+    if (!todos || todos.length === 0) {
+      // If no todos are stored, user fetch from the API
+      axios.get('https://jsonplaceholder.typicode.com/todos')
+        .then(response => {
+          // Initialize an empty array to hold the first 5 todos
+          let firstFiveTodos = [];
+  
+          // using for Loop to loop through the first 5 items in the response and push them into the array
+            for (let i = 0; i < 5; i++) {
+                let todo = response.data[i];
+                firstFiveTodos.push(todo);
+            }
+  
+          // log the todos load frrom api
+          console.log('Todos loaded from API:', firstFiveTodos);
+        })
+        // catching any error 
+        .catch(error => {
+          console.error('Error fetching todos from API:', error);
+        });
+    } else {
+      // If todos are already in localStorage, load them 
+      console.log('Todos from localStorage:', todos);
+    }
+}
+  // Call the function to load todos when the page loads
+loadTodos();
   
 window.onload = function () {  //show list function
 
