@@ -10,7 +10,7 @@ function saveData() {  //local storage save data function
 
 };
 
-function loadTodos() {
+function loadTodos() {  //API Function
     // Get todos from localStorage
     let todos = JSON.parse(localStorage.getItem('todos'));
   
