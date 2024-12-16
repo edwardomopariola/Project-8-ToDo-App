@@ -13,7 +13,7 @@ function loadTodos () {
       .then(response => {
         let myArray = []  //initialize an empty array to hold the first five todos
 
-        for (let i = 0; i < 5; i++) {   //Using for loop to loop through the 5 todos
+        for (let i = 0; i < 5; i++) {   //Using for loop to loop through the first 5 todos
           let todo = response.data[i]
       
           let li = document.createElement("li");
@@ -24,17 +24,18 @@ function loadTodos () {
           span.innerHTML = '\u00d7'
           li.appendChild(span)
 
-          myArray.push(todo);
-        }   saveData()
+          myArray.push(todo);  //pushing into myarray
+        } saveData()  //calling localStorage FUNCTION
 
         console.log('todos loaded from API:', myArray);
       })
       .catch(error => {
-        console.error('Error fetching todos from API:', error);
+        console.error('Error fetching todos from API:', error);  //catching any error
       });
-    }
-  }
-
+    } else {
+      console.log('todos from localStorage:', todos);  //if todos already in localStorage, loas them
+    };
+};
 loadTodos()
 
 
