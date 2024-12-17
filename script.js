@@ -1,21 +1,19 @@
 let inputBox = document.getElementById("input-box"); // Declaring a varible of "input-box"
 let listContainer = document.getElementById("list-container"); //Declaring a varible of "list-container"
 
-let myArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []; // using the ternary operator, am declaring an empty array 
-
+let myArray = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")) : []; // using the ternary operator, am declaring an empty array 
+// console.log("parsed myArray:", myArray)
 function saveData() {  //local storage save data function
-  localStorage.setItem('items', JSON.stringify(myArray));
+  localStorage.setItem('todos', JSON.stringify(myArray));
 };
 
 function loadTodos () {
     if(localStorage.getItem("todos") === null) {
       axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(response => {
-        let myArray = []  //initialize an empty array to hold the first five todos
-
         for (let i = 0; i < 5; i++) {   //Using for loop to loop through the first 5 todos
           let todo = response.data[i]
-      
+
           let li = document.createElement("li");
           li.innerHTML = todo.title;
           li.id = todo.id;
@@ -23,9 +21,9 @@ function loadTodos () {
           let span = document.createElement('span')
           span.innerHTML = '\u00d7'
           li.appendChild(span)
-
+         
           myArray.push(todo);  //pushing into myarray
-        } saveData()  //calling localStorage FUNCTION
+        } saveData()  //save updated code in localStorage
 
         console.log('todos loaded from API:', myArray);
       })
@@ -33,7 +31,7 @@ function loadTodos () {
         console.error('Error fetching todos from API:', error);  //catching any error
       });
     } else {
-      console.log('todos from localStorage:', todos);  //if todos already in localStorage, loas them
+      console.log('todos from localStorage:', myArray);  //if todos already in localStorage, load them
     };
 };
 loadTodos()
