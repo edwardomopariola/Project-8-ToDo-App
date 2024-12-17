@@ -43,7 +43,7 @@ window.onload = function () {  //show list function
       
     let todoObj = myArray[i];
     let li = document.createElement("li");
-    li.innerHTML = todoObj.text;
+    li.innerHTML = todoObj.title;
     li.id = todoObj.id
     listContainer.appendChild(li);
     let span = document.createElement("span") //creating a span element
@@ -58,10 +58,10 @@ function addTask() {  //add task function
     }
     else{
 
-        let todoObj = {text: inputBox.value, id: Date.now()};  //getting my key name ID AND TEXT
+        let todoObj = {title: inputBox.value, id: Date.now()};  //getting my key name ID AND TEXT
 
         let li = document.createElement("li");
-        li.innerHTML = todoObj.text;
+        li.innerHTML = todoObj.title;
         li.id = todoObj.id
         listContainer.appendChild(li);
         let span = document.createElement("span") //creating a span element
