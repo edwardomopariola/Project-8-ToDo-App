@@ -32,7 +32,7 @@ loadTodos()
 window.onload = function () {  //show list function
   loadTodos();
   for(let i = 0 ; i < myArray.length; i++) {  //using for loop to loop thru my array
-    displayTodo(myArray[i]);
+    displayTodo(myArray[i]); //calling the display function 
   };
 };
 
@@ -42,14 +42,14 @@ function addTask() {  //add task function
   }
   else{
     let todoObj = {title: inputBox.value, id: Date.now()};  //getting my key name ID AND TEXT
-    displayTodo(todoObj);
+    displayTodo(todoObj); //calling the display function
     inputBox.value = "";
     myArray.push(todoObj);
     saveData();
   };
 };
 
-function displayTodo(todo) {  //Adding todo as a perameter
+function displayTodo(todo) {  //display function. Adding todo as a perameter
   let li = document.createElement("li");
   li.innerHTML = todo.title;
   li.id = todo.id;
