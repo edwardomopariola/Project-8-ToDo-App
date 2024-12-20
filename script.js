@@ -26,7 +26,7 @@ function loadTodos () {
       console.log('todos from localStorage:', myArray);  //if todos already in localStorage, load them
     };
 };
-loadTodos()
+
 
 
 window.onload = function () {  //show list function
@@ -59,13 +59,14 @@ function displayTodo(todo) {  //display function. Adding todo as a perameter
   li.appendChild(span);
 };
 
-listContainer.addEventListener("click", function(e) {  
-    if (e.target.tagName === "SPAN") {
-      let todo = e.target.parentElement;
-      let todoId = todo.id;
-      todo.remove()   // remove from DOM
-      myArray = myArray.filter((obj) => obj.id !== Number(todoId));   //    remove from myarray variable that hold local storage
+function deleteTodos(e) {
+  if (e.target.tagName === "SPAN") {
+    let todo = e.target.parentElement;
+    let todoId = todo.id;
+    todo.remove()   // remove from DOM
+    myArray = myArray.filter((obj) => obj.id !== Number(todoId));   //    remove from myarray variable that hold local storage
         
-      saveData()    // save updated array to localstorage
-    };
-});
+    saveData();    // save updated array to localstorage
+  };
+};
+listContainer.addEventListener("click", deleteTodos);
